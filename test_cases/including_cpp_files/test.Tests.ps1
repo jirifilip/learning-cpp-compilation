@@ -1,6 +1,7 @@
 ﻿$script:here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $script:outPath = "$here/out"
 
+
 BeforeAll {
     if (-Not (Test-Path $outPath)) {
         mkdir $outPath
