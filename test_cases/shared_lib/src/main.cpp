@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <stdio.h>
 #include <iostream>
+#include <vector>
 
 
 typedef int (*plusFunc)(int, int);
@@ -12,13 +13,24 @@ void abortWithMessage(const std::string& message) {
 }
 
 
-int main() {
-    HINSTANCE library = LoadLibrary(TEXT("lib.dll"));
+std::string resolveLibraryName(const std::vector<std::string>& arguments) {
+    if (arguments.empty()) {
+        return "lib.dll";
+    }
+
+    return arguments.at(0);
+}
+
+
+int main(int argumentCount, char* argumentVector[]) {
+    std::vector<std::string> arguments{ argumentVector + 1, argumentVector + argumentCount }; 
+    std::string libraryName = resolveLibraryName(arguments);
+    
+    HINSTANCE library = LoadLibrary(libraryName.data());
 
     if (library == NULL) {
         abortWithMessage("Unable to load library");
     }
-
 
     plusFunc plus = (plusFunc) GetProcAddress(library, "plus");
 
