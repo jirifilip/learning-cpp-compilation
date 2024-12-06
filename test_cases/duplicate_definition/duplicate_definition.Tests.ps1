@@ -4,7 +4,7 @@
         $outPath = "$here/out"
 
         if (Test-Path $outPath) {
-            remove-item $outPath
+            remove-item -r $outPath
         }
 
         mkdir $outPath
