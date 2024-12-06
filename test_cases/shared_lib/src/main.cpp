@@ -4,9 +4,6 @@
 #include <vector>
 
 
-
-
-
 void abortWithMessage(const std::string& message) {
     std::cerr << message << std::endl;
     std::abort();
