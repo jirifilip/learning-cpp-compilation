@@ -1,4 +1,4 @@
-﻿Describe "Include C++ file" {
+﻿Describe "Dynamically linking libraries" {
     BeforeAll {
         $here = $PSScriptRoot
         $outPath = "$here/out"
